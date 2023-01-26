@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiGreatCircle.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="greatcircle.jfif"
+                WidthRequest="400"
+                SemanticProperties.Description="Great Circle Distance"
+                HorizontalOptions="Center" />
+
+            <Label Text="Location 1 Latitude" />
+            <Entry x:Name="EntryLat1" Text="28.8815356" Placeholder="Latitude 1 " PlaceholderColor="Violet" FontSize="Large" />
+            <Label Text="Location 1 Longitude" />
+            <Entry x:Name="EntryLng1" Text="-81.7036378"  Placeholder="Longitude 1 " PlaceholderColor="Violet" FontSize="Large" />
+
+            <Label Text="Location 2 Latitude" />
+            <Entry x:Name="EntryLat2" Text="29.8815356" Placeholder="Latitude 2 " PlaceholderColor="Violet" FontSize="Large" />
+            <Label Text="Location 2 Longitude" />
+            <Entry x:Name="EntryLng2" Text="-81.7036378" Placeholder="Longitude 2 " PlaceholderColor="Violet" FontSize="Large" />
+
+            <Label x:Name="LblResult" Text="Great Circle Distance is" FontSize="Large" />
+
+            <Button
+                x:Name="BtnCalculate"
+                Text="Calculate Great Circle Distance"
+                SemanticProperties.Hint="Calculate Distance"
+                Clicked="BtnCalculate_Clicked"
+                HorizontalOptions="Center" />
+
+            <Button x:Name="BtnSwitch" SemanticProperties.Hint="Switch Second location Latitude by one degree, second press changes Longitude by one degree"
+                    Text="Switch 1 deg Lat and Lng"
+                    HorizontalOptions="Center"
+                    Clicked="BtnSwitch_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

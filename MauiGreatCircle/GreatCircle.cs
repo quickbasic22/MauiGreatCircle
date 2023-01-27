@@ -18,16 +18,15 @@ namespace MauiGreatCircle
         
         public string Degrees_DMS(double deg)
         {
-            double Negation = Math.Sign(deg);
-            
             double DecimalPart = Math.Truncate(deg);
-            double IntegerPart = deg % 1;
+
+            double IntegerPart = Math.Abs(deg % 1);
             double Min = IntegerPart * 60;
             double MinDecimalPart = Math.Truncate(Min);
             double MinIntegerPart = Min % 1.0;
             double Sec = Math.Round(MinIntegerPart * 60.0, 1);
-            double IntegerWithSign = Negation * IntegerPart;
-            string result = $"{Negation * DecimalPart} {MinDecimalPart} {Sec}";
+            
+            string result = $"{DecimalPart} {MinDecimalPart} {Sec}";
             return result;
         }
         public double GreatCircle_Calculation(double LatDeg1, double LongDeg1, double LatDeg2, double LongDeg2)

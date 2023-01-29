@@ -1,6 +1,8 @@
 ﻿using MauiGreatCircle.Model;
 using MauiGreatCircle.ViewModels;
 using System.Runtime.CompilerServices;
+using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
 
 namespace MauiGreatCircle;
 
@@ -49,7 +51,14 @@ public partial class MainPage : ContentPage
         Double AnswerLng2 = Math.Round(Answer2[1], 5);
 
         LblAntipodal1.Text = AnswerLat.ToString() + " " + AnswerLng.ToString();
+
         LblAntipodal2.Text = AnswerLat2.ToString() + " " + AnswerLng2.ToString();
+
+        var ThroughGround1 = GreateCircle.GetDistantThroughEarth(Lat1, Long1, AnswerLat, AnswerLng);
+        var ThroughGround2 = GreateCircle.GetDistantThroughEarth(Lat2, Long2, AnswerLat2, AnswerLng2);
+                       
+        LblThroughGround1.Text = ThroughGround1.ToString();
+        LblThroughGround2.Text = ThroughGround2.ToString();
     }
     public static double[] ParseStringToDoubleArray(string input)
     {
@@ -71,6 +80,7 @@ public partial class MainPage : ContentPage
             Longitude1.Text = location1.Longitude.ToString();
             Lat1 = location1.Latitude;
             Long1 = location1.Longitude;
+            LblAntipodalTo1.Text += location1.Name;
         }
         else
         {
@@ -90,6 +100,7 @@ public partial class MainPage : ContentPage
             Longitude2.Text = location2.Longitude.ToString();
             Lat2 = location2.Latitude;
             Long2 = location2.Longitude;
+            LblAntipodalTo2.Text += location2.Name;
         }
         else
         {
@@ -116,6 +127,8 @@ public partial class MainPage : ContentPage
         LblResult.Text = "";
         LblAntipodal1.Text = "";
         LblAntipodal2.Text = "";
+        LblAntipodalTo1.Text = "";
+        LblAntipodalTo2.Text = "";
     }
 }
 

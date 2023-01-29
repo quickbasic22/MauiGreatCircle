@@ -36,12 +36,17 @@
             <Entry x:Name="EntryLng2" Text="-81.7036378" Placeholder="Longitude 2 " PlaceholderColor="Violet" FontSize="Large" />-->
             <Label Text="Great Circle Distance is:" FontSize="Large" />
             <Entry x:Name="LblResult" Placeholder="Great Circle Distance Miles" PlaceholderColor="Blue" Text="Great Circle Distance is" FontSize="Large" />
-
-            <Label Text="Antipodal to Location1:" FontSize="Large" />
+            
+           
+            <Label x:Name="LblAntipodalTo1" Text="Antipodal to " FontSize="Large" />
             <Entry x:Name="LblAntipodal1" Placeholder="Latitude Longitude" PlaceholderColor="Blue" FontSize="Large" />
+            <Label Text="Antipodal Distance Miles" FontSize="Large" />
+            <Label x:Name="LblThroughGround1" FontSize="Large" />
 
-            <Label Text="Antipodal to Location2:" FontSize="Large" />
+            <Label x:Name="LblAntipodalTo2" Text="Antipodal to " FontSize="Large" />
             <Entry x:Name="LblAntipodal2" Placeholder="Latitude Longitude" PlaceholderColor="Blue" FontSize="Large" />
+            <Label Text="Antipodal Distance Miles" FontSize="Large" />
+            <Label x:Name="LblThroughGround2" FontSize="Large" />
 
             <Button
                 x:Name="BtnCalculate"
@@ -50,6 +55,7 @@
                 Clicked="BtnCalculate_Clicked"
                 HorizontalOptions="Center" />
             <Button x:Name="BtnClear" FontSize="Large" Text="Clear Fields" Clicked="BtnClear_Clicked" />
+            
 
         </VerticalStackLayout>
     </ScrollView>

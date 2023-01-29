@@ -27,7 +27,7 @@ namespace MauiGreatCircle.ViewModels
                 new LocationInfo() { Id = 9, Name = "Singapore", Latitude = 1.29016, Longitude = 103.852},
                 new LocationInfo() { Id = 10, Name = "Brazil", Latitude = -10.8104515, Longitude = -52.973118},
                 new LocationInfo() { Id = 11, Name = "Galápagos Islands", Latitude = -0.43609226, Longitude = -90.59137},
-                new LocationInfo() { Id = 12, Name = "Hilo Hawaii", Latitude = 19.724876, Longitude = 155.08868},
+                new LocationInfo() { Id = 12, Name = "Hilo Hawaii", Latitude = 19.724876, Longitude = -155.08868},
                 new LocationInfo() { Id = 13, Name = "Dubai", Latitude = 25.20498, Longitude = 55.271057},
                 new LocationInfo() { Id = 14, Name = "Juneau Alaska", Latitude = 58.300323, Longitude = -134.41763},
                 new LocationInfo() { Id = 15, Name = "Bolivar Ohio", Latitude = 40.65014, Longitude = -81.45259}

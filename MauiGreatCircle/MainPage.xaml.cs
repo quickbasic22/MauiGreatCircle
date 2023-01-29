@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using MauiGreatCircle.Model;
+using MauiGreatCircle.ViewModels;
+using System.Runtime.CompilerServices;
 
 namespace MauiGreatCircle;
 
@@ -10,16 +12,10 @@ public partial class MainPage : ContentPage
 	Double Long1 { get; set; }
 	Double Long2 { get; set; }
 	Double Result { get; set; }
-
-	Double OneDegLat { get; set; } = 29.8815356;
-    Double NormalDegLat { get; set; } = 28.8815356;
-    Double OneDegLon { get; set; } = -80.7036378;
-    Double NormalDegLon { get; set; } = -81.7036378;
-
     public MainPage()
 	{
 		InitializeComponent();
-        BindingContext = new Model.LocationInfo();
+        BindingContext = new MainPageViewModel();
 	}
 
     private void BtnCalculate_Clicked(object sender, EventArgs e)
@@ -47,23 +43,14 @@ public partial class MainPage : ContentPage
         Double[] Answer = GreateCircle.Get_AntiPodal(latDbArray1[0], latDbArray1[1], latDbArray1[2], lngDbArray1[0], lngDbArray1[1], lngDbArray1[2]);
         Double AnswerLat = Math.Round(Answer[0],5);
         Double AnswerLng = Math.Round(Answer[1], 5);
-        LblAntipodal.Text = AnswerLat.ToString() + " " + AnswerLng.ToString();
-    }
 
-    private void BtnSwitch_Clicked(object sender, EventArgs e)
-    {
-		if (Double.Parse(Latitude2.Text) == 28.8815356)
-		{
-            Latitude2.Text = OneDegLat.ToString();
-            Longitude2.Text = NormalDegLon.ToString();
-        }
-		else
-		{
-            Latitude2.Text = NormalDegLat.ToString();
-            Longitude2.Text = OneDegLon.ToString();
-		}
-    }
+        Double[] Answer2 = GreateCircle.Get_AntiPodal(latDbArray2[0], latDbArray2[1], latDbArray2[2], lngDbArray2[0], lngDbArray2[1], lngDbArray2[2]);
+        Double AnswerLat2 = Math.Round(Answer2[0], 5);
+        Double AnswerLng2 = Math.Round(Answer2[1], 5);
 
+        LblAntipodal1.Text = AnswerLat.ToString() + " " + AnswerLng.ToString();
+        LblAntipodal2.Text = AnswerLat2.ToString() + " " + AnswerLng2.ToString();
+    }
     public static double[] ParseStringToDoubleArray(string input)
     {
 		string[] coorRaw = input.Split(' ');
@@ -75,22 +62,60 @@ public partial class MainPage : ContentPage
         return result;
     }
 
-    private void LocationPicker_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        var picker = (Picker)sender;
-        var location = (Model.LocationInfo)picker.SelectedItem;
-        if (Latitude1.Text == "")
+    private void LocationPicker1_SelectedIndexChanged(object sender, EventArgs e)
+    { 
+        var location1 = LocationPicker1.SelectedItem as LocationInfo;
+        if (location1 != null)
         {
-            Latitude1.Text = location.Latitude.ToString();
-            Longitude1.Text = location.Longitude.ToString();
-            Location1.Text = location.Name;
+            Latitude1.Text = location1.Latitude.ToString();
+            Longitude1.Text = location1.Longitude.ToString();
+            Lat1 = location1.Latitude;
+            Long1 = location1.Longitude;
         }
         else
         {
-            Latitude2.Text = location.Latitude.ToString();
-            Longitude2.Text = location.Longitude.ToString();
-            Location2.Text = location.Name;
+            Latitude1.Text = "";
+            Longitude1.Text = "";
+            Lat1 = 0.0;
+            Long1 = 0.0;
+        }   
+    }
+
+    private void LocationPicker2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var location2 = LocationPicker2.SelectedItem as LocationInfo;
+        if (location2 != null)
+        {
+            Latitude2.Text = location2.Latitude.ToString();
+            Longitude2.Text = location2.Longitude.ToString();
+            Lat2 = location2.Latitude;
+            Long2 = location2.Longitude;
         }
+        else
+        {
+            Latitude2.Text = "";
+            Longitude2.Text = "";
+            Lat2 = 0.0;
+            Long2 = 0.0;
+        }  
+    }
+
+    private void BtnClear_Clicked(object sender, EventArgs e)
+    {
+        var location1 = LocationPicker1.SelectedItem as LocationInfo;
+        var location2 = LocationPicker2.SelectedItem as LocationInfo;
+        Location1.Text = "";
+        Latitude1.Text = "";
+        Longitude1.Text = "";
+        Location2.Text = "";
+        Latitude1.Text = "";
+        Longitude1.Text = "";
+        LocationPicker1.SelectedIndex = -1;
+        LocationPicker2.SelectedIndex = -1;
+        LblName1.Text = "";
+        LblResult.Text = "";
+        LblAntipodal1.Text = "";
+        LblAntipodal2.Text = "";
     }
 }
 

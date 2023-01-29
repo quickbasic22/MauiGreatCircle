@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModel="clr-namespace:MauiGreatCircle.Model"
-             x:DataType="viewModel:LocationInfo"
+             xmlns:viewModels="clr-namespace:MauiGreatCircle.ViewModels"
+             x:DataType="viewModels:MainPageViewModel"
              x:Class="MauiGreatCircle.MainPage">
 
     <ScrollView>
@@ -17,11 +17,12 @@
                 SemanticProperties.Description="Great Circle Distance"
                 HorizontalOptions="Center" />
 
-            <Label Text="Location 1 Latitude" />
-            <Picker x:Name="LocationPicker" Title="Pick Location from list" TextColor="Blue" BackgroundColor="LightPink" TitleColor="Purple" ItemsSource="{Binding Source={x:Type viewModel:LocationInfo}}" ItemDisplayBinding="{Binding Name}" FontSize="Large" SelectedIndexChanged="LocationPicker_SelectedIndexChanged" />
+            <Label x:Name="LblName1" Text="Location 1 Latitude" />
+            <Picker x:Name="LocationPicker1" Title="Pick Location from list" TextColor="Blue" BackgroundColor="LightPink" TitleColor="Purple" ItemsSource="{Binding LocationInformation}" ItemDisplayBinding="{Binding Name}" FontSize="Large" SelectedIndexChanged="LocationPicker1_SelectedIndexChanged"  />
             <Entry x:Name="Location1" Text="1042 Rainbow Cir" FontSize="Large" TextColor="Blue" BackgroundColor="AliceBlue" />
             <Entry x:Name="Latitude1" Text="28.8815365" Placeholder="Departure Latitude" />
             <Entry x:Name="Longitude1" Text="-81.7036378" Placeholder="Departure Longitude" />
+            <Picker x:Name="LocationPicker2" Title="Pick Location from list" TextColor="Blue" BackgroundColor="LightPink" TitleColor="Purple" ItemsSource="{Binding LocationInformation}" ItemDisplayBinding="{Binding Name}" FontSize="Large" SelectedIndexChanged="LocationPicker2_SelectedIndexChanged"  />
             <Entry x:Name="Location2" Text="1 Degree differant in Latitude" FontSize="Large" TextColor="Blue" BackgroundColor="AliceBlue" />
             <Entry x:Name="Latitude2" Text="29.8815356" Placeholder="Destination Latitude" />
             <Entry x:Name="Longitude2" Text="-81.7036378" Placeholder="Destination Longitude" />
@@ -33,9 +34,14 @@
             <Entry x:Name="EntryLat2" Text="29.8815356" Placeholder="Latitude 2 " PlaceholderColor="Violet" FontSize="Large" />
             <Label Text="Location 2 Longitude" />
             <Entry x:Name="EntryLng2" Text="-81.7036378" Placeholder="Longitude 2 " PlaceholderColor="Violet" FontSize="Large" />-->
+            <Label Text="Great Circle Distance is:" FontSize="Large" />
+            <Entry x:Name="LblResult" Placeholder="Great Circle Distance Miles" PlaceholderColor="Blue" Text="Great Circle Distance is" FontSize="Large" />
 
-            <Label x:Name="LblResult" Text="Great Circle Distance is" FontSize="Large" />
-            <Label x:Name="LblAntipodal" FontSize="Large" />
+            <Label Text="Antipodal to Location1:" FontSize="Large" />
+            <Entry x:Name="LblAntipodal1" Placeholder="Latitude Longitude" PlaceholderColor="Blue" FontSize="Large" />
+
+            <Label Text="Antipodal to Location2:" FontSize="Large" />
+            <Entry x:Name="LblAntipodal2" Placeholder="Latitude Longitude" PlaceholderColor="Blue" FontSize="Large" />
 
             <Button
                 x:Name="BtnCalculate"
@@ -43,11 +49,7 @@
                 SemanticProperties.Hint="Calculate Distance"
                 Clicked="BtnCalculate_Clicked"
                 HorizontalOptions="Center" />
-
-            <Button x:Name="BtnSwitch" SemanticProperties.Hint="Switch Second location Latitude by one degree, second press changes Longitude by one degree"
-                    Text="Switch 1 deg Lat and Lng"
-                    HorizontalOptions="Center"
-                    Clicked="BtnSwitch_Clicked" />
+            <Button x:Name="BtnClear" FontSize="Large" Text="Clear Fields" Clicked="BtnClear_Clicked" />
 
         </VerticalStackLayout>
     </ScrollView>
